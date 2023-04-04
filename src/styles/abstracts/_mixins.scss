@@ -1,0 +1,138 @@
+@use "variables" as *;
+
+// text mixins
+@mixin maxTextWidth($max, $min: null) {
+  white-space: nowrap;
+  max-width: $max;
+
+  @if $min {
+    min-width: $min;
+  }
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@mixin maxLines($max: 2) {
+  display: -webkit-box;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $max;
+  overflow: hidden;
+}
+
+/// size
+@mixin size($width, $height: null) {
+  width: $width;
+  height: $height or $width;
+}
+
+// media queries
+@mixin tablet {
+  @media only screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin landscape-phone {
+  @media only screen and (min-width: 576px) and (orientation: landscape) and (max-height: 400px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media only screen and (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: 992px) {
+    @content;
+  }
+}
+
+@mixin lg-desktop {
+  @media only screen and (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin extra-lg-desktop {
+  @media only screen and (min-width: 1400px) {
+    @content;
+  }
+}
+
+@mixin tablet-and-landscape-phone {
+  @include tablet {
+    @content;
+  }
+
+  @include landscape-phone {
+    @content;
+  }
+}
+
+// border-radius
+@mixin inheritBorderRadius($size: inherit, $direction: "horizontal") {
+  &:first-child {
+    border-top-left-radius: $size;
+    border-#{if($direction == "horizontal", "bottom-left", "top-right")}-radius: $size;
+  }
+
+  &:last-child {
+    border-#{if($direction == "horizontal", "top-right", "bottom-left")}-radius: $size;
+    border-bottom-right-radius: $size;
+  }
+}
+
+// padding
+@mixin normalizePadding(
+  $mobile-padding: 0,
+  $tablet-padding: null,
+  $desktop-padding: null
+) {
+  padding: $mobile-padding $mobile-spacing;
+  @include tablet {
+    // use mobile padding if tablet padding is not set
+    padding: $tablet-padding or $mobile-padding $tablet-spacing;
+  }
+  @include desktop {
+    padding: $desktop-padding or $tablet-padding or $mobile-padding
+      $desktop-spacing;
+  }
+}
+
+@mixin adaptiveHorizontalPadding {
+  padding-left: $mobile-padding;
+  padding-right: $mobile-padding;
+  @include tablet {
+    padding-left: $tablet-padding or $mobile-padding;
+    padding-right: $tablet-padding or $mobile-padding;
+  }
+  @include desktop {
+    padding-left: $desktop-padding or $tablet-padding or $mobile-padding;
+    padding-right: $desktop-padding or $tablet-padding or $mobile-padding;
+  }
+}
+
+@mixin paddingVertical($size) {
+  padding-top: $size;
+  padding-bottom: $size;
+}
+
+@mixin opacityHover($opacity: 0.6) {
+  transition: all 0.2s ease;
+  &:hover {
+    opacity: $opacity;
+  }
+}
+
+@mixin border($left, $right: $left, $top: $left, $bottom: $top) {
+  border-left: $left;
+  border-right: $right;
+  border-top: $top;
+  border-bottom: $bottom;
+}
