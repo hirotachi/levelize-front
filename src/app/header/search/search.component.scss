@@ -1,0 +1,35 @@
+@use "abstracts" as *;
+
+:host {
+  display: flex;
+  gap: 0.5rem;
+  background-color: lighten($primary, 5%);
+  align-items: center;
+  border-radius: 0.5rem;
+  flex: 1;
+  padding: 0 0.6rem;
+  cursor: text;
+
+  @include desktop {
+    flex: unset;
+    width: 30%;
+  }
+  .icon {
+    font-size: 2rem;
+  }
+
+  .input {
+    color: white;
+    flex: 1;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.4rem;
+    outline: none;
+    background-color: inherit;
+    padding: 1rem 0;
+
+    &::placeholder {
+      color: white;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+@use "abstracts" as *;
+
+:host {
+  background-color: $primary;
+  padding: 2rem 1rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+  @include adaptiveHorizontalPadding;
+  @include tablet {
+    justify-content: flex-start;
+    gap: 2rem;
+  }
+}

@@ -1,0 +1,27 @@
+<div class="nav">
+  <a
+    class="link"
+    routerLinkActive="link--active"
+    *ngFor="let job of jobs"
+    [routerLink]="['.']"
+    [queryParams]="{ track: job }"
+    >{{ job }}</a
+  >
+</div>
+<div class="list">
+  <a routerLink="/add" class="add item">
+    <p class="date">here here</p>
+    <ion-icon name="add-outline" class="icon"></ion-icon> Add Salary
+  </a>
+  <a
+    routerLink="/"
+    *ngFor="let submission of submissionsStore.submissions$ | async"
+  >
+    <app-submission routerLink="/" class="item" [submission]="submission">
+      <p class="date">
+        <ion-icon name="time-outline"></ion-icon>
+        {{ utils.relativeTime(submission.createdAt) }}
+      </p>
+    </app-submission>
+  </a>
+</div>
