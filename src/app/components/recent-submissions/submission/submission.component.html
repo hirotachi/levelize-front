@@ -1,6 +1,6 @@
 <ng-content></ng-content>
 <p class="company">
-  <ion-icon name="location"></ion-icon> {{ submission.company.name }}
+  {{ submission.company.name }}
 </p>
 <div class="compensation">
   <span class="currency">{{ submission.compensation.currency }}</span>
@@ -9,6 +9,7 @@
   </p>
 </div>
 <p class="location">
+  <ion-icon name="location"></ion-icon>
   {{ submission.location.city
   }}<span *ngIf="submission.location.state"
     >, {{ submission.location.state }}</span

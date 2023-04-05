@@ -13,6 +13,9 @@ export class UtilsService {
   }
 
   relativeTime(date: Date) {
+    if (formatDistanceToNowStrict(date) === '0 seconds') {
+      return 'just now';
+    }
     return formatDistanceToNowStrict(date, { addSuffix: true });
   }
 }
