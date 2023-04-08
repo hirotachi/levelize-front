@@ -6,6 +6,7 @@ export type SalarySubmission = {
   startDate: Date;
   location: JobLocation;
   createdAt: Date;
+  tag: string;
 };
 
 export type Compensation = {
@@ -26,6 +27,12 @@ export type JobLocation = {
   state?: string;
   country: string;
   type: LocationType;
+};
+
+// props
+export type LinkTrailLink = {
+  label: string;
+  url: string;
 };
 
 // enums

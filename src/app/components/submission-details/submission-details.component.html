@@ -1,0 +1,106 @@
+<div class="controls">
+  <app-report-form
+    [SubmitUrl]="'/' + submission.id + '/report'"
+    placeholder="What's Off?"
+    text="Report this entry"
+  ></app-report-form>
+  <span class="share" (click)="share()">Share</span>
+</div>
+
+<div class="main">
+  <div class="info">
+    <div class="intro">
+      <img
+        class="intro__logo"
+        [ngSrc]="submission.company.logo"
+        [alt]="submission.company.name + ' logo'"
+        [height]="20"
+        [width]="20"
+      />
+      <p class="intro__title">{{ submission.title }}</p>
+      <div class="more">
+        <div class="section">
+          <span class="section__name">Tag</span>
+          <span class="section__value">{{ submission.tag }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="details">
+      <p class="section__title">Details</p>
+      <div class="section__container">
+        <div class="details__field">
+          <ion-icon name="link-outline"></ion-icon>
+          <a target="_blank" [href]="submission.company.url">{{
+            submission.company.name
+          }}</a>
+        </div>
+        <div class="details__field" *ngFor="let field of detailsFields">
+          <ion-icon [attr.name]="field.icon"></ion-icon>
+          <span>{{ field.value }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="years">
+      <div class="years__field" *ngFor="let year of years | keyvalue">
+        <div class="years__field__name">{{ year.key }}</div>
+        <div class="years__field__value">
+          {{ year.value }} {{ year.value > 1 ? "yrs" : "yr" }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="compensation">
+    <div class="total">
+      <p class="section__title">
+        Average Yearly Total Comp
+        <span
+          [tooltipMinWidth]="200"
+          tooltip="We calculate your average yearly total compensation by adding your base salary to the average of your stocks, bonuses, commissions, and any other additional compensation throughout your vesting period."
+        >
+          <ion-icon name="information-circle"></ion-icon>
+        </span>
+      </p>
+      <div class="section__container">
+        <div class="total__details">
+          <div class="total__total">
+            <p class="total__money">
+              {{ this.totalCompensation() }}
+              {{ this.submission.compensation.currency }}
+            </p>
+            <span class="total__show" (click)="toggleCalculation()"
+              >{{ showCalculation ? "Close" : "See Calculation" }}
+              <ion-icon
+                [attr.name]="showCalculation ? 'chevron-up' : 'chevron-down'"
+              ></ion-icon
+            ></span>
+          </div>
+          <div class="total__calculations" *ngIf="showCalculation">
+            <div
+              class="total__calculation"
+              *ngFor="let calc of calculations | keyvalue"
+            >
+              <div class="total__calculation__name">{{ calc.key }}</div>
+              <div class="total__calculation__value">
+                {{ calc.value }} {{ submission.compensation.currency }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comp__details">
+      <p class="section__title">Comp Details</p>
+      <div class="section__container">
+        <div
+          class="comp__details__field"
+          *ngFor="let field of calculations | keyvalue"
+        >
+          <div class="comp__details__field__name">{{ field.key }}</div>
+          <div class="comp__details__field__value">
+            {{ field.value }} {{ submission.compensation.currency }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

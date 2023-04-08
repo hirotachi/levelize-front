@@ -1,0 +1,21 @@
+<table mat-table [dataSource]="submissions">
+  <ng-container matColumnDef="company">
+    <th mat-header-cell *matHeaderCellDef>Company</th>
+    <td mat-cell *matCellDef="let row">
+      <div class="first">
+        <button>
+          {{ isExpanded(row.id) ? "close" : "open" }}
+        </button>
+        {{ row.company.name }}
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <ng-container *matRowDef="let row; columns: displayedColumns">
+    <tr mat-row (click)="toggleRow(row.id)"></tr>
+    <tr class="row" *ngIf="!isExpanded(row.id)">
+      <app-submission-details [submission]="row"></app-submission-details>
+    </tr>
+  </ng-container>
+</table>

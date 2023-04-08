@@ -1,0 +1,36 @@
+<div class="container">
+  <ion-icon
+    (click)="toggle()"
+    *ngIf="prefixIcon"
+    class="prefix"
+    [attr.name]="prefixIcon"
+  ></ion-icon>
+  <input
+    *ngIf="isOpen"
+    type="text"
+    [(ngModel)]="search"
+    [placeholder]="placeholder"
+    class="input"
+  />
+  <span *ngIf="!isOpen" class="selected">{{ value || placeholder }}</span>
+  <ion-icon *ngIf="!isOpen" name="chevron-down-outline"></ion-icon>
+  <ion-icon
+    *ngIf="isOpen"
+    name="chevron-up-outline"
+    (click)="toggle()"
+  ></ion-icon>
+</div>
+
+<ul *ngIf="isOpen" class="options">
+  <li
+    *ngFor="let option of options | appFilter : search"
+    (click)="selectOption(option)"
+    appHighlight
+    [searchedWord]="search"
+    [content]="option"
+    [classToApply]="'highlight'"
+    class="option"
+  >
+    <span>{{ option }}</span>
+  </li>
+</ul>

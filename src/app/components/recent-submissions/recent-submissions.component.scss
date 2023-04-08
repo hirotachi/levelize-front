@@ -1,8 +1,6 @@
 @use "abstracts" as *;
 
 :host {
-  @include adaptiveHorizontalPadding;
-
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -10,6 +8,7 @@
   @include desktop {
     margin-top: 1rem;
   }
+  margin-bottom: 4rem;
 }
 
 .nav {
@@ -52,14 +51,20 @@
     }
   }
 }
-
+.title {
+  font-weight: 600;
+  opacity: 0.8;
+  text-transform: capitalize;
+  font-size: 1.4rem;
+  margin: 1rem 0;
+}
 .list {
   display: grid;
   grid-auto-columns: 15rem;
   grid-auto-flow: column;
   gap: 1rem;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 1rem 0;
   overflow-x: scroll;
   &::-webkit-scrollbar {
     display: none;

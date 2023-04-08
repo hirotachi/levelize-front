@@ -1,0 +1,104 @@
+@use "abstracts" as *;
+
+.title {
+  margin: 2rem 0;
+  font-size: 3rem;
+  text-align: center;
+  @include tablet {
+    margin: 3rem 0;
+  }
+}
+
+.card {
+  box-shadow: 0 0 15px rgba(black, 0.1);
+  padding: 2rem 1rem;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  @include tablet {
+    gap: 3rem;
+  }
+  .add {
+    border: 1px solid $secondary-text;
+    padding: 1rem;
+    border-radius: 1rem;
+    text-decoration: none;
+    text-align: center;
+    color: $secondary-text;
+    @include tablet {
+      width: 60%;
+      margin: 0 auto;
+    }
+
+    @include desktop {
+      width: 40%;
+    }
+  }
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: center;
+  .median {
+    display: flex;
+    flex-direction: column;
+
+    .money {
+      font-weight: bold;
+      font-size: 3rem;
+      color: $green;
+      @include tablet {
+        font-size: 3rem;
+      }
+      @include desktop {
+        font-size: 5rem;
+      }
+    }
+
+    .sub {
+      opacity: 0.8;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      @include tablet {
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  .ranges {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    @include tablet {
+      font-size: 2rem;
+    }
+
+    .range {
+      flex-basis: 20%;
+      @include tablet {
+        flex-basis: 15%;
+      }
+      .money {
+        opacity: 0.8;
+      }
+    }
+    .bar {
+      border-radius: 5rem;
+      display: inline-block;
+      height: 1rem;
+      background-color: green;
+      width: 100%;
+    }
+    .min {
+      background-color: #c2e2da;
+    }
+    .mid {
+      background-color: #6ec4a6;
+    }
+    .max {
+      background-color: $green;
+    }
+  }
+}

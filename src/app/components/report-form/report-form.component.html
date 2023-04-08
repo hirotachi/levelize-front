@@ -1,0 +1,11 @@
+<span class="btn" *ngIf="!isOpened" (click)="toggle()">
+  <ion-icon name="flag"></ion-icon> {{ text }}</span
+>
+
+<div class="form" *ngIf="isOpened">
+  <input type="text" [(ngModel)]="message" [placeholder]="placeholder" />
+  <span class="btn" (click)="send()">Send</span>
+  <span class="close" (click)="toggle()"
+    ><ion-icon name="close"></ion-icon
+  ></span>
+</div>

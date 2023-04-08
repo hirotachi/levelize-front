@@ -21,4 +21,5 @@ export const salarySubmissionMock: SalarySubmission = {
   startDate: new Date(),
   title: 'Technical Lead',
   createdAt: new Date(),
+  tag: 'Software Engineer',
 };

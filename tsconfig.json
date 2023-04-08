@@ -7,6 +7,9 @@
       "@services/*": [
         "src/app/services/*"
       ],
+      "@state/*": [
+        "src/app/state/*"
+      ],
       "@components/*": [
         "src/app/components/*"
       ],

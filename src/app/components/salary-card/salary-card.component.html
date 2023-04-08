@@ -1,0 +1,26 @@
+<h2 class="title">{{ title }}</h2>
+
+<div class="card">
+  <div class="main">
+    <div class="median">
+      <span class="money">${{ total }}</span>
+      <span class="sub">median total comp, USD</span>
+    </div>
+    <div class="ranges">
+      <div class="range">
+        <span class="bar min"></span>
+        <span class="money">${{ ranges.low }}</span>
+      </div>
+      <div class="range">
+        <span class="bar mid"></span>
+        <span class="money">${{ ranges.mid }}</span>
+      </div>
+      <div class="range">
+        <span class="bar max"></span>
+        <span class="money">${{ ranges.high }}</span>
+      </div>
+    </div>
+  </div>
+
+  <a href="" routerLink="/add" class="add"> 💪 Contribute your Salary</a>
+</div>

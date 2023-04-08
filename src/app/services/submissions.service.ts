@@ -39,4 +39,14 @@ export class SubmissionsService {
       this._submissions.getValue().filter((s) => s.id !== id)
     );
   }
+
+  getLatestSubmissions(): Observable<SalarySubmission[]> {
+    // todo fetch from api
+    return this.submissions$;
+  }
+
+  getSubmissions(limit: number, page: number): Observable<SalarySubmission[]> {
+    // todo fetch from api
+    return this.submissions$;
+  }
 }

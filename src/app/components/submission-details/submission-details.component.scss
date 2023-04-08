@@ -1,0 +1,179 @@
+@use "abstracts" as *;
+
+:host {
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+  padding-bottom: 3rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  font-size: 1.4rem;
+  align-items: center;
+  color: $secondary-text;
+  .share {
+    cursor: pointer;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  @include desktop {
+    flex-direction: row;
+    gap: 5rem;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  &__logo {
+    display: inline-block;
+    width: 10rem;
+    object-fit: contain;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 500;
+  }
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  &__field {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 1.4rem;
+    ion-icon {
+      font-size: 1.6rem;
+      color: $secondary-text;
+    }
+    a {
+      color: $secondary-text;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: all 0.2s ease;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.years {
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1.4rem;
+    &__name {
+      font-weight: 500;
+    }
+  }
+}
+
+.compensation {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex: 1;
+  .total {
+    &__total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__money {
+      font-size: 3rem;
+      font-weight: 600;
+    }
+
+    &__show {
+      font-size: 1.4rem;
+      cursor: pointer;
+      opacity: 0.8;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    &__calculations {
+      margin: 1rem 0;
+      display: flex;
+      flex-direction: column;
+    }
+    &__calculation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(black, 0.1);
+      font-size: 1.4rem;
+      &__value {
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.comp__details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  &__field {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4rem;
+    &__value {
+      font-weight: 500;
+    }
+  }
+}
+
+.section {
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  &__title {
+    font-weight: 500;
+    font-size: 1.4rem;
+    margin: 1rem 0;
+  }
+  &__container {
+    display: inherit;
+    gap: inherit;
+    flex-direction: inherit;
+    padding-left: 1rem;
+  }
+
+  &__name {
+    text-transform: uppercase;
+    color: grey;
+  }
+  &__value {
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+}

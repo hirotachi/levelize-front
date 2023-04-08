@@ -1,21 +1,19 @@
 <div class="nav">
   <a
+    (click)="handleTrackChange($event, job)"
     class="link"
-    routerLinkActive="link--active"
+    [href]="'?track=' + job"
+    [class.link--active]="job === currentTrack"
     *ngFor="let job of jobs"
-    [routerLink]="['.']"
-    [queryParams]="{ track: job }"
     >{{ job }}</a
   >
 </div>
+<p class="title" *ngIf="currentTrack">{{ currentTrack }} Salaries</p>
 <div class="list">
   <a routerLink="/add" class="add item">
     <ion-icon name="add-outline" class="icon"></ion-icon> Add Salary
   </a>
-  <a
-    routerLink="/"
-    *ngFor="let submission of submissionsStore.submissions$ | async"
-  >
+  <a routerLink="/" *ngFor="let submission of latestSubmissions">
     <app-submission routerLink="/" class="item" [submission]="submission">
       <p class="date">
         <ion-icon name="time-outline"></ion-icon>

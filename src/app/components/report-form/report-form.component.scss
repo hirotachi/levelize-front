@@ -1,0 +1,35 @@
+@use "abstracts" as *;
+
+.btn {
+  cursor: pointer;
+  color: $secondary-text;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  .close {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    color: grey;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    &:hover {
+      color: black;
+    }
+  }
+  input {
+    padding: 1rem 1rem;
+    border: 1px solid rgba(black, 0.2);
+    border-radius: 0.5rem;
+    &:focus {
+      outline: none;
+      border-color: $secondary-text;
+    }
+  }
+}

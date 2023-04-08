@@ -1,1 +1,15 @@
 <app-recent-submissions></app-recent-submissions>
+<!-- location -->
+<app-select-input
+  [options]="['test', 'working']"
+  prefixIcon="location"
+  placeholder="Search for location"
+  [onChange]="handleLocationChange"
+  [value]="currentLocation"
+></app-select-input>
+<!-- card that shows average of salaries low/med/high and add your salary button-->
+<app-salary-card
+  [title]="currentTrack + ' Salary in ' + currentLocation"
+></app-salary-card>
+
+<app-submissions-table></app-submissions-table>

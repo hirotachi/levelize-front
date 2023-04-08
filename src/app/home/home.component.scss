@@ -1,4 +1,6 @@
 @use "abstracts" as *;
 
 :host {
+  @include adaptiveHorizontalPadding;
+  display: block;
 }
