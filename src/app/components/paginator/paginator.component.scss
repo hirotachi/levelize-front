@@ -1,0 +1,93 @@
+@use "abstracts" as *;
+
+.select {
+  position: relative;
+  margin: 1rem 0;
+  min-width: 6rem;
+  width: fit-content;
+  .selected {
+    padding: 1rem;
+    cursor: pointer;
+    border: 1px solid rgba(black, 0.1);
+    border-radius: 0.5rem;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    &--open {
+      border-color: $secondary-text;
+    }
+  }
+
+  .options {
+    position: absolute;
+    border: 1px solid rgba(black, 0.1);
+    border-radius: 0.5rem;
+    top: 110%;
+    box-shadow: 0 0 0.5rem rgba(black, 0.1);
+    left: 0;
+    width: 100%;
+    background-color: white;
+    overflow: hidden;
+    overflow-y: auto;
+    max-height: 20rem;
+
+    .option {
+      padding: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+      background-color: white;
+
+      &:hover {
+        background-color: rgba(black, 0.1);
+      }
+
+      &:first-of-type {
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+      }
+
+      &:last-of-type {
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+      }
+      &--selected {
+        background-color: rgba(black, 0.1);
+      }
+    }
+  }
+}
+
+:host {
+  padding: 0 1rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 1.4rem;
+}
+
+.page {
+  display: inline-block;
+  margin: 0 1rem;
+}
+
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-end;
+  .control {
+    cursor: pointer;
+    font-size: 2rem;
+    padding: 1rem;
+    background-color: transparent;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    &:not(:disabled):hover {
+      background-color: rgba(grey, 0.1);
+    }
+  }
+}

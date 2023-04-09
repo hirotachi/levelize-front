@@ -33,6 +33,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { TooltipDirective } from './directives/tooltip.directive';
 import { MatListModule } from '@angular/material/list';
 import { ReportFormComponent } from './components/report-form/report-form.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { PaginatorComponent } from './components/paginator/paginator.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -51,6 +56,7 @@ import { ReportFormComponent } from './components/report-form/report-form.compon
     SubmissionDetailsComponent,
     TooltipDirective,
     ReportFormComponent,
+    PaginatorComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +71,10 @@ import { ReportFormComponent } from './components/report-form/report-form.compon
     MatTooltipModule,
     MatButtonModule,
     MatListModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatOptionModule,
+    MatSelectModule,
   ],
   providers: [
     {

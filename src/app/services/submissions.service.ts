@@ -8,8 +8,9 @@ import { salarySubmissionMock } from '../utils/mocks';
 })
 export class SubmissionsService {
   private readonly _submissions = new BehaviorSubject<SalarySubmission[]>(
-    Array.from({ length: 5 }).map((v, i) => ({
+    Array.from({ length: 10 }).map((v, i) => ({
       ...salarySubmissionMock,
+      title: `${salarySubmissionMock.title} ${i}`,
       id: i.toString(),
     }))
   );

@@ -7,13 +7,19 @@ export type SalarySubmission = {
   location: JobLocation;
   createdAt: Date;
   tag: string;
+  experience: Experience;
 };
 
 export type Compensation = {
-  baseSalary: number;
+  base: number;
   bonus: number;
   stock: number;
   currency: string;
+};
+
+export type Experience = {
+  total: number;
+  atCompany: number;
 };
 
 export type Company = {

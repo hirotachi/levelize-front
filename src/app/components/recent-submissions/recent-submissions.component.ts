@@ -43,7 +43,7 @@ export class RecentSubmissionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.submissionsService.getLatestSubmissions().subscribe((submissions) => {
-      this.latestSubmissions = submissions;
+      this.latestSubmissions = submissions.slice(0, 5);
     });
   }
 }

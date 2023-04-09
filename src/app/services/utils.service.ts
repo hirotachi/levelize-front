@@ -9,7 +9,7 @@ export class UtilsService {
   constructor() {}
 
   calcTotalCompensation(compensation: Compensation): number {
-    return compensation.baseSalary + compensation.bonus + compensation.stock;
+    return compensation.base + compensation.bonus + compensation.stock;
   }
 
   relativeTime(date: Date) {

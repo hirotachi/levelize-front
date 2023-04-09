@@ -8,7 +8,7 @@ export const salarySubmissionMock: SalarySubmission = {
     url: 'https://www.bytedance.com/en/',
   },
   compensation: {
-    baseSalary: 127894,
+    base: 127894,
     bonus: 17534,
     currency: 'USD',
     stock: 7534,
@@ -22,4 +22,8 @@ export const salarySubmissionMock: SalarySubmission = {
   title: 'Technical Lead',
   createdAt: new Date(),
   tag: 'Software Engineer',
+  experience: {
+    total: 5,
+    atCompany: 3,
+  },
 };

@@ -9,11 +9,7 @@ import { SalarySubmission } from '../../types';
 export class SubmissionDetailsComponent implements OnInit {
   @Input() submission!: SalarySubmission;
 
-  years = {
-    'Years At Company': 3,
-    'Years Of Experience': 5,
-    'Years At Level': 2,
-  };
+  years = {};
 
   calculations = {
     'Base Salary': 127894,
@@ -40,11 +36,17 @@ export class SubmissionDetailsComponent implements OnInit {
         value: this.submission?.location.type,
       },
     ];
+
+    this.years = {
+      'Years At Company': this.submission?.experience.atCompany,
+      'Years Of Experience': this.submission?.experience.total,
+      'Years At Level': this.submission?.experience.atCompany,
+    };
   }
 
   totalCompensation() {
     return (
-      this.submission?.compensation.baseSalary ??
+      this.submission?.compensation.base ??
       0 + this.submission?.compensation.bonus ??
       0 + this.submission?.compensation.stock ??
       0

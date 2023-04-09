@@ -18,6 +18,12 @@
   color: $secondary-text;
   .share {
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    ion-icon {
+      font-size: 1.6rem;
+    }
   }
 }
 
@@ -25,6 +31,7 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  margin-top: 1rem;
   @include desktop {
     flex-direction: row;
     gap: 5rem;

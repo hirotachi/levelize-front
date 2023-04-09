@@ -1,18 +1,91 @@
+@use "abstracts" as *;
+
 .mat-mdc-row .mat-mdc-cell {
-  border-bottom: 1px solid rgba(black, 0.2);
-  border-top: 1px solid transparent;
+  border-bottom: 1px solid rgba(black, 0.1);
   cursor: pointer;
-  padding: 0 2rem;
+  padding: 0;
 }
 
 .mat-mdc-header-cell {
-  border-bottom: 1px solid rgba(black, 0.2);
+  border-bottom: 1px solid rgba(black, 0.1);
+}
+
+.cell,
+.mat-mdc-row {
+  padding: 1rem 2rem;
+  border-top: none;
+  cursor: pointer;
+}
+.details {
+}
+
+.cdk-header-row {
+  background-color: $tertiary;
+  color: white;
+}
+.cdk-header-cell {
+  font-weight: 500;
+  padding: 1rem 2rem;
+
+  &:first-of-type {
+    border-top-left-radius: 0.5rem;
+  }
+  &:last-of-type {
+    border-top-right-radius: 0.5rem;
+  }
+  .sub {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-top: 0.5rem;
+  }
+}
+
+:host {
+  display: block;
+  border: 1px solid rgba(black, 0.1);
+  margin: 2rem 0;
+  border-radius: 0.5rem;
+}
+
+.header {
+  &-sub {
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+}
+.cell {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  &-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-weight: 500;
+  }
+
+  &-sub {
+    opacity: 0.7;
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
 }
 
 .row {
-  padding: 1rem 2rem;
+  padding: 2rem;
   display: block;
-  border-bottom: 1px solid rgba(black, 0.2);
+  border-bottom: 1px solid rgba(black, 0.1);
+  @include desktop {
+    padding: 3rem 4rem;
+  }
 }
-.details {
+
+.active {
+  transition: all 0.2s ease;
+  color: $secondary-text;
+}
+
+.paginator {
+  margin-left: auto;
+  width: fit-content;
 }

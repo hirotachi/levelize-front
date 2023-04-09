@@ -1,0 +1,36 @@
+Items per page:
+<div class="select" (click)="toggle()">
+  <div class="selected" [ngClass]="{ 'selected--open': isOpen }">
+    {{ currentPageSize }}
+    <ion-icon [attr.name]="isOpen ? 'caret-up' : 'caret-down'"></ion-icon>
+  </div>
+  <div class="options" *ngIf="isOpen">
+    <div
+      class="option"
+      [ngClass]="{ 'option--selected': size === currentPageSize }"
+      *ngFor="let size of pageSizes"
+      (click)="changePageSize(size)"
+    >
+      {{ size }}
+    </div>
+  </div>
+</div>
+
+<span class="page">Page {{ currentPage }} of {{ total }}</span>
+
+<div class="controls">
+  <button
+    class="control"
+    [disabled]="currentPage === 1"
+    (click)="changePage(currentPage - 1)"
+  >
+    <ion-icon name="chevron-back"></ion-icon>
+  </button>
+  <button
+    class="control"
+    [disabled]="currentPage === total"
+    (click)="changePage(currentPage + 1)"
+  >
+    <ion-icon name="chevron-forward"></ion-icon>
+  </button>
+</div>
