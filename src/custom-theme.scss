@@ -1,0 +1,24 @@
+@use "@angular/material" as mat;
+
+$my-primary: mat.define-palette(mat.$indigo-palette, 500);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$my-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+    ),
+  )
+);
+
+@include mat.all-component-themes($my-theme);
+
+#mat-mdc-hint-0 {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.mdc-floating-label--float-above {
+  font-size: 1.6rem !important;
+}

@@ -1,0 +1,20 @@
+<div class="section" *ngFor="let section of sections">
+  <p class="section__title">{{ section.title }}</p>
+
+  <div class="fields">
+    <app-custom-input
+      class="field"
+      *ngFor="let field of section.fields"
+      [placeholder]="field.placeholder"
+      [value]="field.value"
+      [hintText]="field.hintText"
+      [label]="field.label"
+      [suggestions]="field.suggestions"
+      [type]="field.type"
+    ></app-custom-input>
+  </div>
+</div>
+<button class="submit" [ngClass]="{ 'submit--disabled': !complete }">
+  Submit Salary
+  <ion-icon name="send"></ion-icon>
+</button>

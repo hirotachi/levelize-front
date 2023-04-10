@@ -12,6 +12,8 @@ export class HomeComponent {
   currentLocation: string = '';
   currentTrack: string = '';
 
+  inputLabel = '';
+
   constructor(
     private store: Store<{ filter: FilterState }>,
     private router: Router

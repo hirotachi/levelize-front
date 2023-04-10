@@ -1,5 +1,5 @@
 <!--header logo --- searchs like levels.fyi-->
 <!--latest added salaries with a button to add yours-->
 <!-- the rest of the page https://www.levels.fyi/t/software-engineer?countryId=254&showAllRegions=true-->
-<app-header></app-header>
+<app-header *ngIf="!isCreatePage"></app-header>
 <router-outlet></router-outlet>

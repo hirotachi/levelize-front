@@ -1,0 +1,25 @@
+<header class="header">
+  <a routerLink="/">logo</a>
+  <button class="restart">
+    <ion-icon name="arrow-back-outline"></ion-icon> Restart
+  </button>
+</header>
+
+<main class="main">
+  <div class="intro">
+    <h1>Add Your Salary</h1>
+    <p class="sub">Over 300,000 salaries submitted!</p>
+  </div>
+  <div class="choices" *ngIf="!hasChosen">
+    <div class="choice">
+      <button (click)="hasChosen = true">Enter Manually</button>
+      <div class="fields">
+        <p class="field">Anonymous</p>
+        <p class="field">
+          <ion-icon name="stopwatch-outline"></ion-icon> Takes about 50 seconds
+        </p>
+      </div>
+    </div>
+  </div>
+  <app-creation-form *ngIf="hasChosen"></app-creation-form>
+</main>

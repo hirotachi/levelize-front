@@ -1,0 +1,37 @@
+<div
+  class="container"
+  [ngClass]="{
+    'container--focused': focused || (value.invalid && value.value),
+    'container--error': value.invalid && value.touched,
+    'container--valid': value.valid
+  }"
+  (click)="focused = true; showSuggestions = true"
+>
+  <span class="label">{{ label }}</span>
+  <input
+    *ngIf="type !== 'select'"
+    [formControl]="value"
+    [placeholder]="placeholder ?? label"
+    (focus)="focused = true"
+    (blur)="focused = false"
+  />
+  <span class="select" *ngIf="type === 'select'">{{ value.value }}</span>
+  <span *ngIf="hintText" class="btn" (click)="toggleHint($event)">
+    <ion-icon name="information-circle-outline"></ion-icon>
+  </span>
+  <div class="suggestions" *ngIf="value.value && showSuggestions">
+    <div
+      class="suggestion"
+      *ngFor="let suggestion of suggestions"
+      (click)="handleClick($event, suggestion)"
+    >
+      {{ suggestion }}
+    </div>
+  </div>
+</div>
+<div class="messages">
+  <span class="error" *ngIf="value.invalid && value.touched">{{
+    getErrorMessage()
+  }}</span>
+  <span class="hint" *ngIf="showHint && hintText">{{ hintText }}</span>
+</div>

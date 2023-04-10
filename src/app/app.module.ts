@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { HeaderComponent } from './header/header.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './header/search/search.component';
 import { RecentSubmissionsComponent } from '@components/recent-submissions/recent-submissions.component';
 import { SubmissionComponent } from '@components/recent-submissions/submission/submission.component';
@@ -38,6 +38,10 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import { CreateComponent } from './pages/create/create.component';
+import { CreationFormComponent } from './components/creation-form/creation-form.component';
+import { CustomInputComponent } from './components/custom-input/custom-input.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +61,9 @@ import { MatSelectModule } from '@angular/material/select';
     TooltipDirective,
     ReportFormComponent,
     PaginatorComponent,
+    CreateComponent,
+    CreationFormComponent,
+    CustomInputComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +82,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatOptionModule,
     MatSelectModule,
+    MatIconModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {
