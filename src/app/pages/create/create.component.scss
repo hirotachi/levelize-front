@@ -5,6 +5,7 @@
   background-color: #f8f9fb;
   padding: 0 1rem;
   gap: 2rem;
+  min-height: 100vh;
   @include tablet {
     padding: 0 20%;
   }

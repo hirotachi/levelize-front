@@ -44,7 +44,8 @@
 }
 
 .submit {
-  padding: 1rem;
+  padding: 1.5rem 1rem;
+  border-radius: 0.5rem;
   border: none;
   background-color: $secondary-text;
   color: white;
@@ -53,6 +54,10 @@
   gap: 0.8rem;
   justify-content: center;
   cursor: pointer;
+  @include desktop {
+    width: 50%;
+    margin: 0 auto;
+  }
   &--disabled {
     opacity: 0.5;
     background-color: $primary;

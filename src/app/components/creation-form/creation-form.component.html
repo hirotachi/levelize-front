@@ -14,7 +14,11 @@
     ></app-custom-input>
   </div>
 </div>
-<button class="submit" [ngClass]="{ 'submit--disabled': !complete }">
+<button
+  class="submit"
+  (click)="submit()"
+  [ngClass]="{ 'submit--disabled': !complete }"
+>
   Submit Salary
   <ion-icon name="send"></ion-icon>
 </button>

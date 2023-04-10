@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { InputProps } from '@components/custom-input/custom-input.component';
 import { UtilsService } from '@services/utils.service';
@@ -9,7 +9,7 @@ import { merge } from 'rxjs';
   templateUrl: './creation-form.component.html',
   styleUrls: ['./creation-form.component.scss'],
 })
-export class CreationFormComponent {
+export class CreationFormComponent implements OnInit {
   constructor(private utilsService: UtilsService) {}
 
   arrangements = ['remote', 'hybrid', 'in-office'];
@@ -103,17 +103,34 @@ export class CreationFormComponent {
   ];
 
   complete = false;
+  isComplete() {
+    return this.sections
+      .flatMap((section) => section.fields)
+      .every((field) => {
+        return field.value.valid;
+      });
+  }
+
+  submit() {
+    if (!this.isComplete()) {
+      return;
+    }
+    const data = this.sections
+      .flatMap((section) => section.fields)
+      .reduce((acc, field) => {
+        // @ts-ignore
+        acc[field.field] = field.value.value;
+        return acc;
+      }, {});
+    console.log(data);
+  }
   ngOnInit(): void {
     const allFieldObservables = this.sections.flatMap((section) =>
       section.fields.map((field) => field.value.valueChanges)
     );
 
     const checkCompleteness = () => {
-      this.complete = this.sections
-        .flatMap((section) => section.fields)
-        .every((field) => {
-          return field.value.valid;
-        });
+      this.complete = this.isComplete();
     };
 
     // Check completeness on initialization to account for default values
