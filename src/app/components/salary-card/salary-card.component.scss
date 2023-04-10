@@ -51,6 +51,10 @@
     .money {
       font-weight: bold;
       font-size: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
       color: $green;
       @include tablet {
         font-size: 3rem;
@@ -88,7 +92,13 @@
         flex-basis: 15%;
       }
       .money {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
         opacity: 0.8;
+        ion-icon {
+          color: $green;
+        }
       }
     }
     .bar {

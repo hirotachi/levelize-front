@@ -43,6 +43,7 @@ import { CreateComponent } from './pages/create/create.component';
 import { CreationFormComponent } from './components/creation-form/creation-form.component';
 import { CustomInputComponent } from './components/custom-input/custom-input.component';
 import { ViewComponent } from './pages/view/view.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { ViewComponent } from './pages/view/view.component';
     MatSelectModule,
     MatIconModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [
     {

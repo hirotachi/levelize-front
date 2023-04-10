@@ -1,4 +1,4 @@
-export type SalarySubmission = {
+export type Offer = {
   id: string;
   title: string;
   company: Company;
@@ -47,3 +47,39 @@ export enum LocationType {
   REMOTE = 'remote',
   HYBRID = 'hybrid',
 }
+
+export type PageableResponse<T> = {
+  content: T[];
+  pageable: {
+    sort: {
+      empty: boolean;
+      sorted: boolean;
+      unsorted: boolean;
+    };
+    offset: number;
+    pageNumber: number;
+    pageSize: number;
+    paged: boolean;
+    unpaged: boolean;
+  };
+  last: boolean;
+  totalElements: number;
+  totalPages: number;
+  size: number;
+  number: number;
+  sort: {
+    empty: boolean;
+    sorted: boolean;
+    unsorted: boolean;
+  };
+  first: boolean;
+  numberOfElements: number;
+  empty: boolean;
+};
+
+export type MinMaxResponse = {
+  min: number;
+  max: number;
+  total: number;
+  count: number;
+};

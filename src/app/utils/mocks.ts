@@ -1,6 +1,6 @@
-import { LocationType, SalarySubmission } from '../types';
+import { LocationType, Offer } from '../types';
 
-export const salarySubmissionMock: SalarySubmission = {
+export const salarySubmissionMock: Offer = {
   id: '1',
   company: {
     logo: 'https://i.imgur.com/gPA9jT6.png',

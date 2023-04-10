@@ -8,7 +8,7 @@
     >{{ job }}</a
   >
 </div>
-<p class="title" *ngIf="currentTrack">{{ currentTrack }} Salaries</p>
+<p class="title">{{ currentTrack || "All Titles" }} Salaries</p>
 <div class="list">
   <a routerLink="/create" class="add item">
     <ion-icon name="add-outline" class="icon"></ion-icon> Add Salary

@@ -1,6 +1,6 @@
 <header class="header">
   <a routerLink="/">logo</a>
-  <button class="restart" (click)="hasChosen = false">
+  <button class="restart" (click)="hasChosen = false" *ngIf="hasChosen">
     <ion-icon name="arrow-back-outline"></ion-icon> Restart
   </button>
 </header>

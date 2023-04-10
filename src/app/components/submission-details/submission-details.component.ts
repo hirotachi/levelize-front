@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SalarySubmission } from '../../types';
+import { Offer } from '../../types';
 
 @Component({
   selector: 'app-submission-details',
@@ -7,7 +7,7 @@ import { SalarySubmission } from '../../types';
   styleUrls: ['./submission-details.component.scss'],
 })
 export class SubmissionDetailsComponent implements OnInit {
-  @Input() submission!: SalarySubmission;
+  @Input() submission!: Offer;
 
   years = {};
 

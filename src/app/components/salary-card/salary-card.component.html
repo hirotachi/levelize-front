@@ -3,21 +3,35 @@
 <div class="card">
   <div class="main">
     <div class="median">
-      <span class="money">${{ total }}</span>
-      <span class="sub">median total comp, USD</span>
+      <span class="money"
+        ><ion-icon
+          [attr.name]="ranges.count ? 'cash-outline' : 'sad-outline'"
+        ></ion-icon>
+        {{ ranges.total }}</span
+      >
+      <span class="sub">{{
+        ranges.count ? "median total comp" : "No salaries submitted yet"
+      }}</span>
     </div>
-    <div class="ranges">
+    <div class="ranges" *ngIf="ranges.count">
       <div class="range">
         <span class="bar min"></span>
-        <span class="money">${{ ranges.low }}</span>
+        <span class="money"
+          ><ion-icon name="cash-outline"></ion-icon> {{ ranges.min }}</span
+        >
       </div>
       <div class="range">
         <span class="bar mid"></span>
-        <span class="money">${{ ranges.mid }}</span>
+        <span class="money"
+          ><ion-icon name="cash-outline"></ion-icon
+          >{{ ranges.total / ranges.count }}</span
+        >
       </div>
       <div class="range">
         <span class="bar max"></span>
-        <span class="money">${{ ranges.high }}</span>
+        <span class="money"
+          ><ion-icon name="cash-outline"></ion-icon> {{ ranges.max }}</span
+        >
       </div>
     </div>
   </div>

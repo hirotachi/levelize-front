@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SubmissionsService } from '@services/submissions.service';
-import { SalarySubmission } from '../../types';
+import { Offer } from '../../types';
 import { UtilsService } from '@services/utils.service';
 import { PaginatorEvent } from '@components/paginator/paginator.component';
 
@@ -10,7 +10,7 @@ import { PaginatorEvent } from '@components/paginator/paginator.component';
   styleUrls: ['./submissions-table.component.scss'],
 })
 export class SubmissionsTableComponent implements OnInit {
-  submissions: SalarySubmission[] = [];
+  submissions: Offer[] = [];
   limit = 5;
   page = 1;
 

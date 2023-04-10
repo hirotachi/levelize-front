@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SalarySubmission } from '../../../types';
+import { Offer } from '../../../types';
 import { SubmissionsService } from '@services/submissions.service';
 import { salarySubmissionMock } from '../../../utils/mocks';
 import { UtilsService } from '@services/utils.service';
@@ -10,7 +10,7 @@ import { UtilsService } from '@services/utils.service';
   styleUrls: ['./submission.component.scss'],
 })
 export class SubmissionComponent {
-  @Input() submission: SalarySubmission = salarySubmissionMock;
+  @Input() submission: Offer = salarySubmissionMock;
 
   constructor(
     public submissionsStore: SubmissionsService,

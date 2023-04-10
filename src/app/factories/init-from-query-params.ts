@@ -10,9 +10,6 @@ export function initFromQueryParams(
 ) {
   return () => {
     route.queryParams.subscribe((params) => {
-      if (!params['location'] && !params['track']) {
-        return;
-      }
       store.dispatch(
         setFilter({
           currentLocation: params['location'] || '',

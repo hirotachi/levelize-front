@@ -53,7 +53,9 @@ export class CustomInputComponent {
 
   @HostListener('document:click', ['$event.target'])
   onClick(targetElement: EventTarget) {
-    this.showSuggestions =
+    const isClickedInside =
       this.elementRef.nativeElement.contains(targetElement);
+    this.showSuggestions = isClickedInside;
+    this.focused = isClickedInside;
   }
 }

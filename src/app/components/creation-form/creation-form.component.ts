@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { InputProps } from '@components/custom-input/custom-input.component';
 import { UtilsService } from '@services/utils.service';
 import { merge } from 'rxjs';
+import { OfferService } from '@services/offer.service';
 
 @Component({
   selector: 'app-creation-form',
@@ -10,7 +11,10 @@ import { merge } from 'rxjs';
   styleUrls: ['./creation-form.component.scss'],
 })
 export class CreationFormComponent implements OnInit {
-  constructor(private utilsService: UtilsService) {}
+  constructor(
+    private utilsService: UtilsService,
+    private offerService: OfferService
+  ) {}
 
   arrangements = ['remote', 'hybrid', 'in-office'];
   months = [
