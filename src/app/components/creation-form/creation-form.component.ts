@@ -13,10 +13,36 @@ export class CreationFormComponent implements OnInit {
   constructor(private utilsService: UtilsService) {}
 
   arrangements = ['remote', 'hybrid', 'in-office'];
+  months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  years = Array.from({ length: 5 }, (_, i) =>
+    (new Date().getFullYear() - i).toString()
+  );
+
   sections: { title: string; fields: ({ field: string } & InputProps)[] }[] = [
     {
       title: 'Company & Title Information',
       fields: [
+        {
+          field: 'title',
+          label: 'Title',
+          value: new FormControl('', [Validators.required]),
+          hintText: 'Your official title. e.g. Software Engineer',
+          placeholder: 'Software Engineer',
+          suggestions: ['Software Engineer', 'Software Developer'],
+        },
         {
           field: 'company',
           label: 'Company',
@@ -25,12 +51,18 @@ export class CreationFormComponent implements OnInit {
           placeholder: 'Google',
         },
         {
-          field: 'title',
-          label: 'Title',
-          value: new FormControl('', [Validators.required]),
-          hintText: 'Your official title. e.g. Software Engineer',
-          placeholder: 'Software Engineer',
-          suggestions: ['Software Engineer', 'Software Developer'],
+          field: 'companyLogo',
+          label: 'Company Logo',
+          value: new FormControl(''),
+          hintText: 'Logo of the company you received the offer from',
+          placeholder: 'https://www.google.com/logo.png',
+        },
+        {
+          field: 'companyUrl',
+          label: 'Company Site',
+          value: new FormControl(''),
+          hintText: 'Site of the company you received the offer from',
+          placeholder: 'https://www.google.com',
         },
       ],
     },
@@ -72,6 +104,20 @@ export class CreationFormComponent implements OnInit {
           hintText: ` hybrid What is your permanent work arrangement with your company? Only select Hybrid if your workplace has designated days to be in office on a weekly or bi-weekly basis.`,
           suggestions: this.arrangements,
         },
+        {
+          field: 'startMonth',
+          label: 'Month',
+          type: 'select',
+          value: new FormControl(this.months[0], [Validators.required]),
+          suggestions: this.months,
+        },
+        {
+          field: 'startYear',
+          label: 'Year',
+          type: 'select',
+          value: new FormControl(this.years[0], [Validators.required]),
+          suggestions: this.years,
+        },
       ],
     },
     {
@@ -97,6 +143,12 @@ export class CreationFormComponent implements OnInit {
           label: 'Bonus/yr',
           value: new FormControl(0, [this.utilsService.onlyNumbersValidator()]),
           placeholder: '0',
+        },
+        {
+          field: 'currency',
+          label: 'Currency',
+          value: new FormControl('USD', [Validators.required]),
+          placeholder: 'USD',
         },
       ],
     },

@@ -42,6 +42,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CreateComponent } from './pages/create/create.component';
 import { CreationFormComponent } from './components/creation-form/creation-form.component';
 import { CustomInputComponent } from './components/custom-input/custom-input.component';
+import { ViewComponent } from './pages/view/view.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { CustomInputComponent } from './components/custom-input/custom-input.com
     CreateComponent,
     CreationFormComponent,
     CustomInputComponent,
+    ViewComponent,
   ],
   imports: [
     BrowserModule,

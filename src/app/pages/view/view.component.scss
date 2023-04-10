@@ -1,0 +1,22 @@
+@use "abstracts" as *;
+
+:host {
+  @include adaptiveHorizontalPadding;
+  display: flex;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: #f8f9fb;
+  min-height: 100vh;
+}
+
+.details {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  @include tablet {
+    padding: 3rem;
+  }
+  @include desktop {
+    padding: 4rem;
+  }
+}

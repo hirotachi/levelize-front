@@ -13,7 +13,10 @@
   <a routerLink="/create" class="add item">
     <ion-icon name="add-outline" class="icon"></ion-icon> Add Salary
   </a>
-  <a routerLink="/" *ngFor="let submission of latestSubmissions">
+  <a
+    [routerLink]="'/offer/' + submission.id"
+    *ngFor="let submission of latestSubmissions"
+  >
     <app-submission routerLink="/" class="item" [submission]="submission">
       <p class="date">
         <ion-icon name="time-outline"></ion-icon>

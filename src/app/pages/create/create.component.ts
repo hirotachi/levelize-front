@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./create.component.scss'],
 })
 export class CreateComponent {
-  hasChosen = true;
+  hasChosen = false;
 }

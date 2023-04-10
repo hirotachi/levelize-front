@@ -10,7 +10,7 @@ export const salarySubmissionMock: SalarySubmission = {
   compensation: {
     base: 127894,
     bonus: 17534,
-    currency: 'USD',
+    currency: 'MAD',
     stock: 7534,
   },
   location: {

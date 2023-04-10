@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, HostListener, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 export type InputProps = {
@@ -47,5 +47,13 @@ export class CustomInputComponent {
   toggleHint(e: MouseEvent) {
     e.stopPropagation();
     this.showHint = !this.showHint;
+  }
+
+  constructor(private elementRef: ElementRef) {}
+
+  @HostListener('document:click', ['$event.target'])
+  onClick(targetElement: EventTarget) {
+    this.showSuggestions =
+      this.elementRef.nativeElement.contains(targetElement);
   }
 }

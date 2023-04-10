@@ -42,6 +42,11 @@ export class SubmissionDetailsComponent implements OnInit {
       'Years Of Experience': this.submission?.experience.total,
       'Years At Level': this.submission?.experience.atCompany,
     };
+    this.calculations = {
+      'Base Salary': this.submission?.compensation.base ?? '--',
+      'Stock/yr': this.submission?.compensation.stock ?? '--',
+      Bonus: this.submission?.compensation.bonus ?? '--',
+    };
   }
 
   totalCompensation() {
