@@ -4,6 +4,8 @@ import { InputProps } from '@components/custom-input/custom-input.component';
 import { UtilsService } from '@services/utils.service';
 import { merge } from 'rxjs';
 import { OfferService } from '@services/offer.service';
+import { Offer } from '../../types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-creation-form',
@@ -13,7 +15,8 @@ import { OfferService } from '@services/offer.service';
 export class CreationFormComponent implements OnInit {
   constructor(
     private utilsService: UtilsService,
-    private offerService: OfferService
+    private offerService: OfferService,
+    private router: Router
   ) {}
 
   arrangements = ['remote', 'hybrid', 'in-office'];
@@ -167,19 +170,50 @@ export class CreationFormComponent implements OnInit {
       });
   }
 
-  submit() {
+  submit = () => {
     if (!this.isComplete()) {
       return;
     }
-    const data = this.sections
+    const data: Record<string, any> = this.sections
       .flatMap((section) => section.fields)
       .reduce((acc, field) => {
         // @ts-ignore
         acc[field.field] = field.value.value;
         return acc;
       }, {});
-    console.log(data);
-  }
+
+    const locationsPattern = /([a-zA-Z]+),\s*([a-zA-Z]+)(\s*([a-zA-Z]+))?/;
+    const location = data['location'].match(locationsPattern);
+    const offer: Partial<Offer> = {
+      title: data['title'],
+      company: {
+        logo: data['companyLogo'],
+        name: data['company'],
+        url: data['companyUrl'],
+      },
+      location: {
+        city: location?.[1] ?? data['location'],
+        state: location[3] ? location?.[2] ?? '' : '',
+        country: location?.[3] ?? location?.[2] ?? '',
+        type: data['arrangement'],
+      },
+      compensation: {
+        base: data['base'],
+        stock: data['stock'],
+        bonus: data['bonus'],
+        currency: data['currency'],
+      },
+      startDate: new Date(data['startYear'], data['startMonth']),
+      experience: {
+        atCompany: data['yearsAtCompany'],
+        total: data['yearsOfExperience'],
+      },
+    };
+
+    this.offerService.createOffer(offer).subscribe((offer) => {
+      this.router.navigate(['/offer', offer.id]);
+    });
+  };
   ngOnInit(): void {
     const allFieldObservables = this.sections.flatMap((section) =>
       section.fields.map((field) => field.value.valueChanges)

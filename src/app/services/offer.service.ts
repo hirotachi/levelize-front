@@ -40,4 +40,8 @@ export class OfferService {
   getOffer(id: number) {
     return this.http.get<Offer>(`${this.url}/${id}`);
   }
+
+  createOffer(offer: Partial<Offer>) {
+    return this.http.post<Offer>(`${this.url}`, offer);
+  }
 }

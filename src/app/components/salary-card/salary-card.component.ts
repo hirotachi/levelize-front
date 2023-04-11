@@ -43,4 +43,6 @@ export class SalaryCardComponent implements OnInit {
   ngOnInit(): void {
     this.loadMinMax();
   }
+
+  protected readonly Math = Math;
 }
