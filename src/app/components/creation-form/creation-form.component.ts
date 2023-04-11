@@ -212,11 +212,10 @@ export class CreationFormComponent implements OnInit {
         total: data['yearsOfExperience'],
       },
     };
-    console.log(offer);
 
-    // this.offerService.createOffer(offer).subscribe((offer) => {
-    //   this.router.navigate(['/offer', offer.id]);
-    // });
+    this.offerService.createOffer(offer).subscribe((offer) => {
+      this.router.navigate(['/offer', offer.id]);
+    });
   };
   ngOnInit(): void {
     const allFieldObservables = this.sections.flatMap((section) =>
