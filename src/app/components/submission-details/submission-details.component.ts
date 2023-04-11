@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Offer } from '../../types';
 
 @Component({
@@ -6,48 +6,36 @@ import { Offer } from '../../types';
   templateUrl: './submission-details.component.html',
   styleUrls: ['./submission-details.component.scss'],
 })
-export class SubmissionDetailsComponent implements OnInit {
+export class SubmissionDetailsComponent {
   @Input() submission!: Offer;
 
-  years = {};
+  detailsFields = [
+    {
+      icon: 'location',
+      value: (s: Offer) =>
+        `${s.location.city}, ${s.location.state ?? ''} ${s.location.country}`,
+    },
+    {
+      icon: 'time',
+      value: (s: Offer) =>
+        `Employee as of ${s?.startDate.toLocaleDateString()}`,
+    },
+    {
+      icon: 'bag',
+      value: (s: Offer) => s?.location.type,
+    },
+  ];
 
-  calculations = {
-    'Base Salary': 127894,
-    'Stock/yr': 7534,
-    Bonus: 17534,
+  years = {
+    'Years At Company': (s: Offer) => s?.experience.atCompany.toString(),
+    'Years Of Experience': (s: Offer) => s?.experience.total.toString(),
+    'Years At Level': (s: Offer) => s?.experience.atCompany.toString(),
   };
-
-  detailsFields: { icon: string; value: string }[] = [];
-
-  ngOnInit(): void {
-    this.detailsFields = [
-      {
-        icon: 'location',
-        value: `${this.submission?.location.city}, ${
-          this.submission?.location.state ?? ''
-        } ${this.submission?.location.country}`,
-      },
-      {
-        icon: 'time',
-        value: `Employee as of ${this.submission?.startDate.toLocaleDateString()}`,
-      },
-      {
-        icon: 'bag',
-        value: this.submission?.location.type,
-      },
-    ];
-
-    this.years = {
-      'Years At Company': this.submission?.experience.atCompany,
-      'Years Of Experience': this.submission?.experience.total,
-      'Years At Level': this.submission?.experience.atCompany,
-    };
-    this.calculations = {
-      'Base Salary': this.submission?.compensation.base ?? '--',
-      'Stock/yr': this.submission?.compensation.stock ?? '--',
-      Bonus: this.submission?.compensation.bonus ?? '--',
-    };
-  }
+  calculations = {
+    'Base Salary': (s: Offer) => s?.compensation.base.toString(),
+    'Stock/yr': (s: Offer) => s?.compensation.stock.toString(),
+    Bonus: (s: Offer) => s?.compensation.bonus.toString(),
+  };
 
   totalCompensation() {
     return (
@@ -76,4 +64,6 @@ export class SubmissionDetailsComponent implements OnInit {
       .then(() => console.log('Successful share'))
       .catch((error) => console.log('Error sharing', error));
   }
+
+  protected readonly Object = Object;
 }

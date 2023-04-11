@@ -14,10 +14,8 @@
     <div class="intro">
       <img
         class="intro__logo"
-        [ngSrc]="submission.company.logo"
+        [src]="submission.company.logo"
         [alt]="submission.company.name + ' logo'"
-        [height]="20"
-        [width]="20"
       />
       <p class="intro__title">{{ submission.title }}</p>
       <div class="more">
@@ -38,7 +36,7 @@
         </div>
         <div class="details__field" *ngFor="let field of detailsFields">
           <ion-icon [attr.name]="field.icon"></ion-icon>
-          <span>{{ field.value }}</span>
+          <span>{{ field.value(submission) }}</span>
         </div>
       </div>
     </div>
@@ -46,7 +44,8 @@
       <div class="years__field" *ngFor="let year of years | keyvalue">
         <div class="years__field__name">{{ year.key }}</div>
         <div class="years__field__value">
-          {{ year.value }} {{ year.value > 1 ? "yrs" : "yr" }}
+          {{ year.value(submission) }}
+          {{ year.value(submission) > "1" ? "yrs" : "yr" }}
         </div>
       </div>
     </div>
@@ -66,7 +65,11 @@
         <div class="total__details">
           <div class="total__total">
             <p class="total__money">
-              {{ this.totalCompensation() }}
+              {{
+                submission.compensation.base +
+                  submission.compensation.stock +
+                  submission.compensation.bonus
+              }}
               {{ this.submission.compensation.currency }}
             </p>
             <span class="total__show" (click)="toggleCalculation()"
@@ -83,7 +86,8 @@
             >
               <div class="total__calculation__name">{{ calc.key }}</div>
               <div class="total__calculation__value">
-                {{ calc.value }} {{ submission.compensation.currency }}
+                {{ calc.value(submission) }}
+                {{ submission.compensation.currency }}
               </div>
             </div>
           </div>
@@ -99,7 +103,7 @@
         >
           <div class="comp__details__field__name">{{ field.key }}</div>
           <div class="comp__details__field__value">
-            {{ field.value }} {{ submission.compensation.currency }}
+            {{ field.value(submission) }} {{ submission.compensation.currency }}
           </div>
         </div>
       </div>

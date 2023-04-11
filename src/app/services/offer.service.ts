@@ -36,4 +36,8 @@ export class OfferService {
       `${this.url}/locations`
     );
   }
+
+  getOffer(id: number) {
+    return this.http.get<Offer>(`${this.url}/${id}`);
+  }
 }
