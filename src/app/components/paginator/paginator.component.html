@@ -16,7 +16,7 @@ Items per page:
   </div>
 </div>
 
-<span class="page">Page {{ currentPage }} of {{ total }}</span>
+<span class="page">Page {{ currentPage }} of {{ totalPages }}</span>
 
 <div class="controls">
   <button
@@ -28,7 +28,7 @@ Items per page:
   </button>
   <button
     class="control"
-    [disabled]="currentPage === total"
+    [disabled]="currentPage === totalPages"
     (click)="changePage(currentPage + 1)"
   >
     <ion-icon name="chevron-forward"></ion-icon>

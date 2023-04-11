@@ -12,7 +12,7 @@ export type PaginatorEvent = {
 export class PaginatorComponent implements OnInit {
   @Input() page: number = 1;
   @Input() pageSizes: number[] = [5, 10, 25, 50];
-  @Input() total: number = 0;
+  @Input() totalPages: number = 0;
   @Input() onChange: (event: PaginatorEvent) => void = () => {};
 
   currentPageSize: number = 0;

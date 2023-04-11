@@ -15,6 +15,12 @@ export class OfferService {
     );
   }
 
+  getOffers(page: number, size: number, search: string) {
+    return this.http.get<PageableResponse<Offer>>(
+      `${this.url}?page=${page}&size=${size}&sort=createdAt,desc&search=${search}`
+    );
+  }
+
   getTitles() {
     return this.http.get<PageableResponse<string>>(`${this.url}/titles?size=6`);
   }

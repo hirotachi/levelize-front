@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { SubmissionsService } from '@services/submissions.service';
+import { Component, Input } from '@angular/core';
 import { Offer } from '../../types';
 import { UtilsService } from '@services/utils.service';
 import { PaginatorEvent } from '@components/paginator/paginator.component';
@@ -9,10 +8,11 @@ import { PaginatorEvent } from '@components/paginator/paginator.component';
   templateUrl: './submissions-table.component.html',
   styleUrls: ['./submissions-table.component.scss'],
 })
-export class SubmissionsTableComponent implements OnInit {
-  submissions: Offer[] = [];
-  limit = 5;
-  page = 1;
+export class SubmissionsTableComponent {
+  @Input() submissions: Offer[] = [];
+  @Input() limit = 5;
+  @Input() page = 1;
+  @Input() totalPages = 0;
 
   displayedColumns: string[] = [
     'company',
@@ -23,18 +23,7 @@ export class SubmissionsTableComponent implements OnInit {
 
   expandedElements: Record<string, boolean> = {};
 
-  constructor(
-    private submissionsService: SubmissionsService,
-    public utils: UtilsService
-  ) {}
-
-  ngOnInit(): void {
-    this.submissionsService
-      .getSubmissions(this.limit, this.page)
-      .subscribe((submissions) => {
-        this.submissions = submissions.slice(0, this.limit);
-      });
-  }
+  constructor(public utils: UtilsService) {}
 
   toggleRow(id: string) {
     this.expandedElements[id] = !this.expandedElements[id];
@@ -44,17 +33,9 @@ export class SubmissionsTableComponent implements OnInit {
     return this.expandedElements[id];
   }
 
-  onPageChange = (event: PaginatorEvent) => {
+  @Input() onPageChange = (event: PaginatorEvent) => {
     this.limit = event.pageSize;
     this.page = event.page;
     this.expandedElements = {};
-    this.submissionsService
-      .getSubmissions(this.limit, this.page)
-      .subscribe((submissions) => {
-        this.submissions = submissions.slice(
-          this.limit * (this.page - 1),
-          this.limit * this.page
-        );
-      });
   };
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FilterState, selectFilter } from '../state/filter.reducer';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OfferService } from '@services/offer.service';
-import { JobLocation } from '../types';
+import { JobLocation, Offer } from '../types';
+import { PaginatorEvent } from '@components/paginator/paginator.component';
 
 @Component({
   selector: 'app-home',
@@ -14,18 +15,28 @@ export class HomeComponent implements OnInit {
   currentLocation: string = '';
   currentTrack: string = '';
 
-  inputLabel = '';
-
   locations: string[] = [];
+  pageSize: number = 5;
+  page: number = 0;
+
+  offers: Offer[] = [];
+  totalPages: number = 0;
 
   constructor(
     private store: Store<{ filter: FilterState }>,
     private router: Router,
-    private offerService: OfferService
+    private offerService: OfferService,
+    private route: ActivatedRoute
   ) {
     this.store.select(selectFilter).subscribe((filter) => {
       this.currentLocation = filter.currentLocation;
       this.currentTrack = filter.currentTrack;
+    });
+
+    this.route.queryParams.subscribe((val) => {
+      this.page = (val['page'] ?? 1) - 1;
+      this.pageSize = val['size'] ?? 5;
+      this.loadOffers();
     });
   }
 
@@ -50,7 +61,28 @@ export class HomeComponent implements OnInit {
     });
   };
 
+  loadOffers = () => {
+    this.offerService
+      .getOffers(this.page, this.pageSize, this.currentLocation)
+      .subscribe((res) => {
+        this.offers = res.content.map((o) => ({
+          ...o,
+          createdAt: new Date(o.createdAt),
+          startDate: new Date(o.startDate),
+        }));
+        this.totalPages = res.totalPages;
+      });
+  };
+
+  onPageChange = (page: PaginatorEvent) => {
+    this.router.navigate([], {
+      queryParams: { page: page.page, size: page.pageSize },
+      queryParamsHandling: 'merge',
+    });
+  };
+
   ngOnInit(): void {
     this.loadLocations();
+    this.loadOffers();
   }
 }

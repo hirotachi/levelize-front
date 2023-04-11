@@ -16,4 +16,10 @@
   "
 ></app-salary-card>
 
-<app-submissions-table></app-submissions-table>
+<app-submissions-table
+  [limit]="pageSize"
+  [totalPages]="totalPages"
+  [page]="page"
+  [submissions]="offers"
+  [onPageChange]="onPageChange"
+></app-submissions-table>
