@@ -2,7 +2,7 @@
 
 :host {
   background-color: $primary;
-  padding: 2rem 1rem;
+  padding: 1rem;
   color: white;
   display: flex;
   align-items: center;
@@ -11,5 +11,11 @@
   @include adaptiveHorizontalPadding;
   @include tablet {
     gap: 2rem;
+    padding: 1.5rem 0;
   }
+}
+
+.logo {
+  color: white;
+  width: 10rem;
 }

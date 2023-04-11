@@ -1,0 +1,24 @@
+@use "abstracts" as *;
+
+:host {
+  @include adaptiveHorizontalPadding;
+  background-color: #ededed;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  .moto {
+    font-size: 1.4rem;
+    opacity: 0.8;
+  }
+  .copyright {
+    font-size: 1.2rem;
+  }
+}
+
+.logo {
+  width: 10rem;
+  color: #7b8b96;
+}

@@ -44,6 +44,8 @@ import { CreationFormComponent } from './components/creation-form/creation-form.
 import { CustomInputComponent } from './components/custom-input/custom-input.component';
 import { ViewComponent } from './pages/view/view.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from './components/footer/footer.component';
+import { LogoComponent } from './logo/logo.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,8 @@ import { HttpClientModule } from '@angular/common/http';
     CreationFormComponent,
     CustomInputComponent,
     ViewComponent,
+    FooterComponent,
+    LogoComponent,
   ],
   imports: [
     BrowserModule,
