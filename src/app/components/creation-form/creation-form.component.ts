@@ -193,7 +193,7 @@ export class CreationFormComponent implements OnInit {
       },
       location: {
         city: location?.[1] ?? data['location'],
-        state: location[3] ? location?.[2] ?? '' : '',
+        state: location?.[3] ? location?.[2] ?? '' : '',
         country: location?.[3] ?? location?.[2] ?? '',
         type: data['arrangement'],
       },
@@ -203,16 +203,20 @@ export class CreationFormComponent implements OnInit {
         bonus: data['bonus'],
         currency: data['currency'],
       },
-      startDate: new Date(data['startYear'], data['startMonth']),
+      startDate: new Date(
+        data['startYear'],
+        this.months.indexOf(data['startMonth'])
+      ),
       experience: {
         atCompany: data['yearsAtCompany'],
         total: data['yearsOfExperience'],
       },
     };
+    console.log(offer);
 
-    this.offerService.createOffer(offer).subscribe((offer) => {
-      this.router.navigate(['/offer', offer.id]);
-    });
+    // this.offerService.createOffer(offer).subscribe((offer) => {
+    //   this.router.navigate(['/offer', offer.id]);
+    // });
   };
   ngOnInit(): void {
     const allFieldObservables = this.sections.flatMap((section) =>

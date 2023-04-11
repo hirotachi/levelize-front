@@ -10,8 +10,6 @@
 </div>
 <p class="location">
   <ion-icon name="location"></ion-icon>
-  {{ submission.location.city
-  }}<span *ngIf="submission.location.state"
-    >, {{ submission.location.state }}</span
-  >
+  {{ submission.location.city }},
+  {{ submission.location.state || submission.location.country || "" }}
 </p>
