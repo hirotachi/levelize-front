@@ -1,0 +1,18 @@
+<a routerLink="/titles" class="back"
+  ><ion-icon name="arrow-back-outline"></ion-icon> back to titles</a
+>
+
+<app-salary-card
+  [ranges]="ranges"
+  [title]="(title || 'All Titles') + ' Salaries'"
+></app-salary-card>
+
+<app-submissions-table
+  [withSearch]="true"
+  [limit]="pageSize"
+  [totalPages]="totalPages"
+  [page]="page"
+  [submissions]="offers"
+  [onPageChange]="onPageChange"
+  [onSearch]="onSearch"
+></app-submissions-table>

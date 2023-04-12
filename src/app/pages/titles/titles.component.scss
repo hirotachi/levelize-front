@@ -1,0 +1,48 @@
+@use "abstracts" as *;
+
+:host {
+  @include adaptiveHorizontalPadding;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 4rem;
+}
+
+.intro {
+  text-align: center;
+  @include tablet {
+    text-align: left;
+  }
+  .title {
+    font-weight: 500;
+  }
+  .sub {
+    opacity: 0.8;
+  }
+}
+
+.list {
+  padding: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  @include tablet {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @include desktop {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .link {
+    text-decoration: underline;
+    color: $primary-text;
+    transition: all 0.2s ease;
+    &:hover {
+      opacity: 0.8;
+      transform: scale(1.01);
+    }
+  }
+}

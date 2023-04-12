@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Offer } from '../../types';
 import { UtilsService } from '@services/utils.service';
 import { PaginatorEvent } from '@components/paginator/paginator.component';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-submissions-table',
@@ -13,6 +14,10 @@ export class SubmissionsTableComponent {
   @Input() limit = 5;
   @Input() page = 1;
   @Input() totalPages = 0;
+  @Input() withSearch = false;
+  @Input() title = 'Explore Salaries';
+  search = new FormControl('');
+  @Input() onSearch? = (value: string) => {};
 
   displayedColumns: string[] = [
     'company',
@@ -23,7 +28,11 @@ export class SubmissionsTableComponent {
 
   expandedElements: Record<string, boolean> = {};
 
-  constructor(public utils: UtilsService) {}
+  constructor(public utils: UtilsService) {
+    this.search.valueChanges.subscribe((value) => {
+      this.onSearch?.(value as string);
+    });
+  }
 
   toggleRow(id: string) {
     this.expandedElements[id] = !this.expandedElements[id];

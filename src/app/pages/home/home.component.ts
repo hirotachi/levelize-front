@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { FilterState, selectFilter } from '../state/filter.reducer';
+import { FilterState, selectFilter } from '@state/filter.reducer';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OfferService } from '@services/offer.service';
-import { JobLocation, Offer } from '../types';
+import { JobLocation, MinMaxResponse, Offer } from '../../types';
 import { PaginatorEvent } from '@components/paginator/paginator.component';
 
 @Component({
@@ -21,6 +21,13 @@ export class HomeComponent implements OnInit {
 
   offers: Offer[] = [];
   totalPages: number = 0;
+
+  ranges: MinMaxResponse = {
+    min: 0,
+    max: 0,
+    count: 0,
+    total: 0,
+  };
 
   constructor(
     private store: Store<{ filter: FilterState }>,
@@ -74,6 +81,14 @@ export class HomeComponent implements OnInit {
       });
   };
 
+  loadMinMax = () => {
+    const location = this.currentLocation;
+    const title = this.currentTrack;
+    this.offerService.getMinMax(title, location).subscribe((res) => {
+      this.ranges = res;
+    });
+  };
+
   onPageChange = (page: PaginatorEvent) => {
     this.router.navigate([], {
       queryParams: { page: page.page, size: page.pageSize },
@@ -84,5 +99,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.loadLocations();
     this.loadOffers();
+    this.loadMinMax();
   }
 }

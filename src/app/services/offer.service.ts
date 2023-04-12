@@ -21,8 +21,16 @@ export class OfferService {
     );
   }
 
-  getTitles() {
-    return this.http.get<PageableResponse<string>>(`${this.url}/titles?size=6`);
+  getOffersByTitle(page: number, size: number, title: string, search: string) {
+    return this.http.get<PageableResponse<Offer>>(
+      `${this.url}/titles/${title}?page=${page}&size=${size}&sort=createdAt,desc&search=${search}`
+    );
+  }
+
+  getTitles(limit?: number) {
+    return this.http.get<PageableResponse<string>>(
+      `${this.url}/titles?size=${limit}`
+    );
   }
 
   getMinMax(title: string, location: string) {

@@ -1,0 +1,27 @@
+@use "abstracts" as *;
+
+:host {
+  @include adaptiveHorizontalPadding;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  min-height: 100vh;
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+}
+
+.back {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.4rem;
+  color: $primary-text;
+  text-transform: capitalize;
+  opacity: 0.5;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  &:hover {
+    opacity: 0.8;
+  }
+}

@@ -57,7 +57,7 @@ export class RecentSubmissionsComponent implements OnInit {
   };
 
   loadTitles = () => {
-    this.offerService.getTitles().subscribe((res) => {
+    this.offerService.getTitles(7).subscribe((res) => {
       this.jobs = res.content;
     });
   };

@@ -1,92 +1,111 @@
-<table mat-table [dataSource]="submissions">
-  <ng-container matColumnDef="company">
-    <th mat-header-cell *matHeaderCellDef>
-      <p class="name">Company</p>
-      <p class="header-sub">Location | Date</p>
-    </th>
-    <td mat-cell *matCellDef="let row">
-      <div class="cell">
-        <ion-icon
-          [attr.name]="isExpanded(row.id) ? 'chevron-up' : 'chevron-down'"
-        >
-        </ion-icon>
-        <div class="cell-main">
-          <span [ngClass]="{ active: isExpanded(row.id) }">{{
-            row.company.name
-          }}</span>
-          <div class="cell-sub">
-            {{ row.location.city }}, {{ row.location.state ?? "" }}
-            {{ row.location.country }} | {{ utils.relativeTime(row.createdAt) }}
+<p class="title">{{ title }}</p>
+<div class="header" *ngIf="withSearch">
+  <div class="search">
+    <ion-icon name="search-outline"></ion-icon>
+    <input
+      type="text"
+      [formControl]="search"
+      placeholder="Search City, Country, Etc"
+    />
+  </div>
+  <a class="add" routerLink="/create"
+    ><ion-icon name="add"></ion-icon> Add Compensation</a
+  >
+</div>
+<div class="wrapper">
+  <div class="container">
+    <table mat-table [dataSource]="submissions">
+      <ng-container matColumnDef="company">
+        <th mat-header-cell *matHeaderCellDef>
+          <p class="name">Company</p>
+          <p class="header-sub">Location | Date</p>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <div class="cell">
+            <ion-icon
+              [attr.name]="isExpanded(row.id) ? 'chevron-up' : 'chevron-down'"
+            >
+            </ion-icon>
+            <div class="cell-main">
+              <span [ngClass]="{ active: isExpanded(row.id) }">{{
+                row.company.name
+              }}</span>
+              <div class="cell-sub">
+                {{ row.location.city }}, {{ row.location.state ?? "" }}
+                {{ row.location.country }} |
+                {{ utils.relativeTime(row.createdAt) }}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef>
-      <p class="name">Job Title</p>
-      <p class="header-sub">Tag</p>
-    </th>
-    <td mat-cell *matCellDef="let row">
-      <div class="cell">
-        <div class="cell-main">
-          {{ row.title }}
-          <div class="cell-sub">{{ row.tag }}</div>
-        </div>
-      </div>
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="experience">
-    <th mat-header-cell *matHeaderCellDef>
-      <p class="name">Years of Experience</p>
-      <p class="header-sub">Total | At Company</p>
-    </th>
-    <td mat-cell *matCellDef="let row">
-      <div class="cell">
-        <div class="cell-main">
-          {{ row.experience.total }} yrs
-          <div class="cell-sub">{{ row.experience.atCompany }} yrs</div>
-        </div>
-      </div>
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="compensation">
-    <th mat-header-cell *matHeaderCellDef>
-      <p class="name">Total Compensation</p>
-      <p class="header-sub">Base | Stock(yr) | Bonus</p>
-    </th>
-    <td mat-cell *matCellDef="let row">
-      <div class="cell">
-        <div class="cell-main">
-          {{ utils.calcTotalCompensation(row.compensation) }}
-          {{ row.compensation.currency }}
-          <div class="cell-sub">
-            {{ row.compensation.base ?? "N/A" }} |
-            {{ row.compensation.stock ?? "N/A" }} |
-            {{ row.compensation.bonus ?? "N/A" }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>
+          <p class="name">Job Title</p>
+          <p class="header-sub">Tag</p>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <div class="cell">
+            <div class="cell-main">
+              {{ row.title }}
+              <div class="cell-sub">{{ row.tag }}</div>
+            </div>
           </div>
-        </div>
-      </div>
-    </td>
-  </ng-container>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="experience">
+        <th mat-header-cell *matHeaderCellDef>
+          <p class="name">Years of Experience</p>
+          <p class="header-sub">Total | At Company</p>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <div class="cell">
+            <div class="cell-main">
+              {{ row.experience.total }} yrs
+              <div class="cell-sub">{{ row.experience.atCompany }} yrs</div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="compensation">
+        <th mat-header-cell *matHeaderCellDef>
+          <p class="name">Total Compensation</p>
+          <p class="header-sub">Base | Stock(yr) | Bonus</p>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <div class="cell">
+            <div class="cell-main">
+              {{ utils.calcTotalCompensation(row.compensation) }}
+              {{ row.compensation.currency }}
+              <div class="cell-sub">
+                {{ row.compensation.base ?? "N/A" }} |
+                {{ row.compensation.stock ?? "N/A" }} |
+                {{ row.compensation.bonus ?? "N/A" }}
+              </div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <ng-container *matRowDef="let row; columns: displayedColumns">
-    <tr mat-row (click)="toggleRow(row.id)"></tr>
-    <tr *ngIf="isExpanded(row.id)">
-      <td [attr.colspan]="displayedColumns.length">
-        <app-submission-details
-          class="row"
-          [submission]="row"
-        ></app-submission-details>
-      </td>
-    </tr>
-  </ng-container>
-</table>
-<app-paginator
-  class="paginator"
-  [onChange]="onPageChange"
-  [page]="1"
-  [totalPages]="totalPages"
-  [pageSizes]="[5, 10, 25, 100]"
-></app-paginator>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <ng-container *matRowDef="let row; columns: displayedColumns">
+        <tr mat-row (click)="toggleRow(row.id)"></tr>
+        <tr *ngIf="isExpanded(row.id)">
+          <td [attr.colspan]="displayedColumns.length">
+            <app-submission-details
+              class="row"
+              [submission]="row"
+            ></app-submission-details>
+          </td>
+        </tr>
+      </ng-container>
+    </table>
+  </div>
+  <app-paginator
+    class="paginator"
+    [onChange]="onPageChange"
+    [page]="1"
+    [totalPages]="totalPages"
+    [pageSizes]="[5, 10, 25, 100]"
+  ></app-paginator>
+</div>

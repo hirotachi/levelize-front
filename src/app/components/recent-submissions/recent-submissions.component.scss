@@ -50,6 +50,18 @@
       border-bottom: 3px solid $secondary-text;
     }
   }
+  .more {
+    margin-left: auto;
+    text-transform: capitalize;
+    font-size: 1.2rem;
+    color: $secondary-text;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 }
 .title {
   font-weight: 600;

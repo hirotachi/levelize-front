@@ -7,7 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from '@pages/home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -46,6 +46,8 @@ import { ViewComponent } from './pages/view/view.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './components/footer/footer.component';
 import { LogoComponent } from './logo/logo.component';
+import { TitlesComponent } from './pages/titles/titles.component';
+import { TitleOffersComponent } from './pages/title-offers/title-offers.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,8 @@ import { LogoComponent } from './logo/logo.component';
     ViewComponent,
     FooterComponent,
     LogoComponent,
+    TitlesComponent,
+    TitleOffersComponent,
   ],
   imports: [
     BrowserModule,

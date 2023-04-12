@@ -13,7 +13,7 @@ import {
 export class HighlightDirective implements OnChanges {
   @Input() searchedWord!: string; // searchText
   @Input() content!: string; // HTML content
-  @Input() classToApply!: string; //class to apply for highlighting
+  @Input() customClass!: string; //class to apply for highlighting
   @Input() setTitle = false; //sets title attribute of HTML
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
@@ -27,7 +27,7 @@ export class HighlightDirective implements OnChanges {
       this.renderer.setProperty(this.el.nativeElement, 'title', this.content);
     }
 
-    if (!this.searchedWord || !this.searchedWord.length || !this.classToApply) {
+    if (!this.searchedWord || !this.searchedWord.length || !this.customClass) {
       this.renderer.setProperty(
         this.el.nativeElement,
         'innerHTML',
@@ -47,7 +47,7 @@ export class HighlightDirective implements OnChanges {
     const re = new RegExp(`(${this.searchedWord})`, 'gi');
     return this.content.replace(
       re,
-      `<span class="${this.classToApply}">$1</span>`
+      `<span class="${this.customClass}">$1</span>`
     );
   }
 }

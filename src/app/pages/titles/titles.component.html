@@ -1,0 +1,13 @@
+<div class="intro">
+  <h1 class="title">Title Directory</h1>
+  <p class="sub">Click on a title to explore salaries.</p>
+</div>
+
+<div class="list">
+  <a
+    class="link"
+    [routerLink]="'/titles/' + title"
+    *ngFor="let title of titles"
+    >{{ title }}</a
+  >
+</div>
