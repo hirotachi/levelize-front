@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit {
     this.store.select(selectFilter).subscribe((filter) => {
       this.currentLocation = filter.currentLocation;
       this.currentTrack = filter.currentTrack;
+      this.loadMinMax();
     });
 
     this.route.queryParams.subscribe((val) => {
