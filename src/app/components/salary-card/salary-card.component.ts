@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MinMaxResponse } from '../../types';
+import { UtilsService } from '@services/utils.service';
 
 @Component({
   selector: 'app-salary-card',
@@ -13,6 +14,7 @@ export class SalaryCardComponent {
     count: 0,
     total: 0,
   };
+  constructor(public utils: UtilsService) {}
 
   @Input() title: string = '';
 

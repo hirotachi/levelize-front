@@ -75,12 +75,14 @@
         <td mat-cell *matCellDef="let row">
           <div class="cell">
             <div class="cell-main">
-              {{ utils.calcTotalCompensation(row.compensation) }}
+              {{
+                utils.formatMoney(utils.calcTotalCompensation(row.compensation))
+              }}
               {{ row.compensation.currency }}
               <div class="cell-sub">
-                {{ row.compensation.base ?? "N/A" }} |
-                {{ row.compensation.stock ?? "N/A" }} |
-                {{ row.compensation.bonus ?? "N/A" }}
+                {{ utils.formatMoney(row.compensation.base) || "N/A" }} |
+                {{ utils.formatMoney(row.compensation.stock) || "N/A" }} |
+                {{ utils.formatMoney(row.compensation.bonus) || "N/A" }}
               </div>
             </div>
           </div>

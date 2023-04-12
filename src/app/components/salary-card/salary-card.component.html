@@ -7,7 +7,7 @@
         ><ion-icon
           [attr.name]="ranges.count ? 'cash-outline' : 'sad-outline'"
         ></ion-icon>
-        {{ ranges.total }}</span
+        {{ utils.formatMoney(ranges.total) }}</span
       >
       <span class="sub">{{
         ranges.count ? "median total comp" : "No salaries submitted yet"
@@ -17,20 +17,24 @@
       <div class="range">
         <span class="bar min"></span>
         <span class="money"
-          ><ion-icon name="cash-outline"></ion-icon> {{ ranges.min }}</span
+          ><ion-icon name="cash-outline"></ion-icon>
+          {{ utils.formatMoney(ranges.min) }}</span
         >
       </div>
       <div class="range">
         <span class="bar mid"></span>
         <span class="money"
           ><ion-icon name="cash-outline"></ion-icon
-          >{{ Math.floor(ranges.total / ranges.count) }}</span
+          >{{
+            utils.formatMoney(Math.floor(ranges.total / ranges.count))
+          }}</span
         >
       </div>
       <div class="range">
         <span class="bar max"></span>
         <span class="money"
-          ><ion-icon name="cash-outline"></ion-icon> {{ ranges.max }}</span
+          ><ion-icon name="cash-outline"></ion-icon>
+          {{ utils.formatMoney(ranges.max) }}</span
         >
       </div>
     </div>

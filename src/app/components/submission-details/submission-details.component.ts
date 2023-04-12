@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Offer } from '../../types';
+import { UtilsService } from '@services/utils.service';
 
 @Component({
   selector: 'app-submission-details',
@@ -9,6 +10,7 @@ import { Offer } from '../../types';
 export class SubmissionDetailsComponent {
   @Input() submission!: Offer;
 
+  constructor(public utils: UtilsService) {}
   detailsFields = [
     {
       icon: 'location',
@@ -32,19 +34,10 @@ export class SubmissionDetailsComponent {
     'Years At Level': (s: Offer) => s?.experience.atCompany.toString(),
   };
   calculations = {
-    'Base Salary': (s: Offer) => s?.compensation.base.toString(),
-    'Stock/yr': (s: Offer) => s?.compensation.stock.toString(),
-    Bonus: (s: Offer) => s?.compensation.bonus.toString(),
+    'Base Salary': (s: Offer) => this.utils.formatMoney(s?.compensation.base),
+    'Stock/yr': (s: Offer) => this.utils.formatMoney(s?.compensation.stock),
+    Bonus: (s: Offer) => this.utils.formatMoney(s?.compensation.bonus),
   };
-
-  totalCompensation() {
-    return (
-      this.submission?.compensation.base ??
-      0 + this.submission?.compensation.bonus ??
-      0 + this.submission?.compensation.stock ??
-      0
-    );
-  }
 
   showCalculation: boolean = false;
   toggleCalculation() {

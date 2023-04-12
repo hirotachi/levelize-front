@@ -27,4 +27,13 @@ export class UtilsService {
       return !valid ? { onlyNumbers: { value: control.value } } : null;
     };
   }
+
+  formatMoney(num?: number, decimalPlaces: number = 0) {
+    if (!num) return num;
+    let result = num.toString();
+    if (num >= 1000) {
+      result = (num / 1000).toFixed(decimalPlaces) + 'k';
+    }
+    return result.toString();
+  }
 }

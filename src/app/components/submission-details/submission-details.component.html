@@ -66,9 +66,9 @@
           <div class="total__total">
             <p class="total__money">
               {{
-                submission.compensation.base +
-                  submission.compensation.stock +
-                  submission.compensation.bonus
+                utils.formatMoney(
+                  utils.calcTotalCompensation(submission.compensation)
+                )
               }}
               {{ this.submission.compensation.currency }}
             </p>
@@ -86,8 +86,12 @@
             >
               <div class="total__calculation__name">{{ calc.key }}</div>
               <div class="total__calculation__value">
-                {{ calc.value(submission) }}
-                {{ submission.compensation.currency }}
+                {{ calc.value(submission) || "--" }}
+                {{
+                  calc.value(submission) !== 0
+                    ? submission.compensation.currency
+                    : ""
+                }}
               </div>
             </div>
           </div>
@@ -103,7 +107,12 @@
         >
           <div class="comp__details__field__name">{{ field.key }}</div>
           <div class="comp__details__field__value">
-            {{ field.value(submission) }} {{ submission.compensation.currency }}
+            {{ field.value(submission) || "--" }}
+            {{
+              field.value(submission) !== 0
+                ? submission.compensation.currency
+                : ""
+            }}
           </div>
         </div>
       </div>

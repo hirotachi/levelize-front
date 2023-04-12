@@ -5,7 +5,9 @@
 <div class="compensation">
   <span class="currency">{{ submission.compensation.currency }}</span>
   <p class="total">
-    {{ utils.calcTotalCompensation(submission.compensation) }}
+    {{
+      utils.formatMoney(utils.calcTotalCompensation(submission.compensation))
+    }}
   </p>
 </div>
 <p class="location">
